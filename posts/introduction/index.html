@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="generator" content="Typst">
+    <title>Carbon Typst Blog 介绍</title>
+    <meta name="date" content="2026-03-17">
+    <link rel="canonical" href="https://example.com/posts/introduction/">
+    <meta property="og:title" content="Carbon Typst Blog 介绍">
+    <meta property="og:type" content="article">
+    <meta name="description" content="本文主要介绍 Carbon Typst Blog 的基本功能和配置方式。">
+    <meta property="og:description" content="本文主要介绍 Carbon Typst Blog 的基本功能和配置方式。">
+    <meta property="og:url" content="https://example.com/posts/introduction/">
+    <meta name="author" content="Carbon Typst Blog">
+    <meta property="article:author" content="Carbon Typst Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="language" content="zh">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <script type="text/javascript">
+      (function(){var key='typ-blog-theme';var theme=null;try{var stored=localStorage.getItem(key);if(stored==='gray-10'||stored==='gray-90'||stored==='gray-100'||stored==='white'){theme=stored;}}catch(_){ }if(!theme){theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'gray-90':'gray-10';}document.documentElement.setAttribute('data-theme',theme);var bg=theme==='gray-90'?'#262626':theme==='gray-100'?'#161616':theme==='white'?'#ffffff':'#f4f4f4';document.documentElement.style.backgroundColor=bg;})();
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ibm/plex-sans@1.1.0/css/ibm-plex-sans-all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ibm/plex-mono@1.1.0/css/ibm-plex-mono-all.min.css">
+    <link rel="stylesheet" href="/assets/core/colors.css">
+    <link rel="stylesheet" href="/assets/core/main.css">
+    <link rel="stylesheet" href="/assets/custom.css">
+    <script type="module" src="/assets/core/render-code.js"></script>
+    <script type="module" src="/assets/core/theme.js"></script>
+    <script type="module" src="/assets/core/post-nav-switch.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <div class="site-header">
+          <div class="nav-shell">
+            <nav>
+              <button class="nav-menu-switch" type="button" aria-label="打开导航"></button>
+              <div class="nav-title">Carbon Typst Blog</div>
+              <div class="nav-body has-post-title">
+                <div class="nav-body-upper">
+                  <div class="nav-body-upper-title">Carbon Typst Blog</div>
+                  <div class="nav-body-upper-links"><a href="/">首页</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archive/">归档</a><a href="/about/">关于</a></div>
+                </div>
+                <div class="nav-body-lower">Carbon Typst Blog 介绍</div>
+              </div>
+              <button class="nav-theme-switch" type="button" aria-label="切换主题"></button>
+            </nav>
+            <div class="nav-sidebar-backdrop"></div>
+            <aside class="nav-sidebar"><a class="nav-sidebar-item" href="/">首页</a><a class="nav-sidebar-item" href="/categories/">分类</a><a class="nav-sidebar-item" href="/tags/">标签</a><a class="nav-sidebar-item" href="/archive/">归档</a><a class="nav-sidebar-item" href="/about/">关于</a></aside>
+          </div>
+        </div>
+      </header>
+      <div class="post-header">
+        <div class="post-header-inner">
+          <h1>Carbon Typst Blog 介绍</h1>
+        </div>
+      </div>
+      <article>
+        <section>
+          <h2>简要介绍</h2>
+          <p>Carbon Typst Blog 是一个以 Carbon 设计系统为基础，基于 Typst 编写的博客模板，其构建脚本通过 Node.js 环境运行。</p>
+          <p>你可以通过更改 Typst 文件管理博客和额外生成的页面。以下是模板自带的页面：</p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Typst 文件</th>
+                  <th>生成的页面路径</th>
+                  <th>页面内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="language-text">pages/index.typ</code></td>
+                  <td><code class="language-text">/</code></td>
+                  <td>首页文章列表*</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">pages/about/index.typ</code></td>
+                  <td><code class="language-text">/about/</code></td>
+                  <td>关于页面</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">pages/archive/index.typ</code></td>
+                  <td><code class="language-text">/archive/</code></td>
+                  <td>文章归档</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">pages/tags/index.typ</code></td>
+                  <td><code class="language-text">/tags/</code></td>
+                  <td>标签总览</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">pages/tags/[tag]/index.typ</code></td>
+                  <td><code class="language-text">/tags/[tag-slug]/</code></td>
+                  <td>标签详情*</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">pages/categories/index.typ</code></td>
+                  <td><code class="language-text">/categories/</code></td>
+                  <td>分类总览</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">pages/categories/[category]/index.typ</code></td>
+                  <td><code class="language-text">/categories/[category-slug]/</code></td>
+                  <td>分类详情*</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">posts/[slug]/index.typ</code></td>
+                  <td><code class="language-text">/posts/[slug]/</code></td>
+                  <td>文章详情页</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>* 注：文章展示页面可能会分页，其页面路径会通过在默认的页面路径后面追加 <code class="language-text">/page/[页码]</code> 得到。</p>
+          <p>上面的 <code class="language-text">[tag]</code> 和 <code class="language-text">[category]</code> 行使的功能和 Astro 类似。构建脚本会自行填写所有可能的标签和分类，并且通过命令行参数传递给 Typst 页面。有关命令行参数的行为，请参考下方「构建指令说明」。</p>
+          <p><strong>构造脚本只会编译文件名为 <code class="language-text">index.typ</code> 的 Typst 文件，并生成对应路径的页面，其他 Typst 文件会自动忽略。</strong>尽管如此，你依然可以使用 <code class="language-text">import</code> 语法在 Typst 文件内部引用其他 Typst 文件。</p>
+          <p>最后，你可以调整如下设置文件，从而影响博客的整体效果：</p>
+          <ul>
+            <li>
+              <p><code class="language-text">config.typ</code>： 全站配置入口，通常用来统一定义导航链接、页脚信息、模板默认值与主题相关参数。有关 <code class="language-text">config.typ</code> 可以配置的全部内容，可以参考【TODO】。</p>
+            </li>
+            <li>
+              <p><code class="language-text">site.config.json</code>： 配置站点标题、站点地址、描述和语言，主要影响 RSS 输出内容。</p>
+            </li>
+            <li>
+              <p><code class="language-text">assets/custom.css</code>： 样式覆盖入口，会在核心样式之后加载，适合做个性化视觉调整。</p>
+            </li>
+            <li>
+              <p><code class="language-text">assets/custom.js</code>（可选）： 自定义前端脚本入口，适合放一些非核心交互逻辑。仓库默认可能没有这个文件，需要时可以自行创建，并在 <code class="language-text">config.typ</code> 的模板参数里通过 <code class="language-text">custom-script</code> 引入。</p>
+            </li>
+          </ul>
+          <h2>搭建步骤</h2>
+          <p>为了在本地搭建 Carbon Typst Blog，你需要执行如下步骤：</p>
+          <ol>
+            <li value="1">确认本地存在较新的 Node.js 和 Typst 运行环境；</li>
+            <li value="2">将模板仓库克隆到本地；</li>
+            <li value="3">
+              <p>进入仓库根目录（也就是包含 <code class="language-text">package.json</code> 的目录），然后运行构建命令。常用命令如下：</p>
+              <ul>
+                <li><code class="language-text">npm run build</code> ：执行常规构建，输出目录为 <code class="language-text">_site/</code>；</li>
+                <li><code class="language-text">npm run build:fast</code> ：使用 <code class="language-text">--jobs 4</code> 并发构建；</li>
+                <li><code class="language-text">npm run build:preview</code> ：输出到 <code class="language-text">_site-preview/</code>，方便预览效果；</li>
+                <li><code class="language-text">npm run build:full</code> ：等价于 <code class="language-text">--jobs 4</code>，用于完整构建。</li>
+              </ul>
+            </li>
+            <li value="4">在本地启动 Live Server 进行预览，或者将生成的站点页面部署到云端。</li>
+          </ol>
+          <p>目前构建流程会从 source 全量写入 staging 后再原子替换输出目录，不再复用旧 <code class="language-text">_site</code> 产物，因此一般情况下不需要额外的“强制刷新”开关。</p>
+          <p>GitHub Actions 自动部署配置正在编写中，后续会补充完整的 CI/CD 示例（包括自动构建与发布流程）。</p>
+          <h2>构建指令说明</h2>
+          <p>除了 <code class="language-text">npm run build</code> 命令之外，你还可以使用下面这个入口命令进行构建：</p>
+          <pre><code class="language-text">node lib/node/build-html.mjs</code></pre>
+          <p>这个命令后面可以接一些可选参数。以下是所有可用的参数列表：</p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>参数</th>
+                  <th>作用</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="language-text">-o</code> 或 <code class="language-text">--out &lt;目录></code></td>
+                  <td>指定输出目录；不写时默认输出到 <code class="language-text">_site</code></td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">-j</code> 或 <code class="language-text">--jobs &lt;数量></code></td>
+                  <td>指定 Typst 编译并发数</td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">-c</code> 或 <code class="language-text">--config &lt;路径></code></td>
+                  <td>指定配置文件路径；不写时默认使用 <code class="language-text">config.typ</code></td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">--cache-root &lt;目录></code></td>
+                  <td>指定缓存目录；不写时默认使用 <code class="language-text">.typ-blog-cache</code></td>
+                </tr>
+                <tr>
+                  <td><code class="language-text">-h</code> 或 <code class="language-text">--help</code></td>
+                  <td>打印完整帮助信息</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="post-meta">
+            <div class="post-tag"><span class="post-tag-desc">标签</span><span class="post-tag-group"><a class="post-tag-item tag-item-with-icon" href="/tags/博客搭建/" style="--tag-background:var(--tag-background-cyan);--tag-color:var(--tag-color-cyan);--tag-background-hover:var(--tag-hover-cyan);--tag-border:var(--tag-border-cyan);--tag-border-hover:var(--tag-border-cyan);"><span class="tag-icon" style="mask-image:url(&quot;/assets/icons/rocket.svg&quot;);"></span><span class="tag-content"><span>博客搭建</span></span></a></span></div>
+            <div class="post-time"><span class="post-time-desc">日期</span><span>2026 年 3 月 17 日</span></div>
+            <div class="post-category"><span class="post-category-desc">分类</span><a class="post-category-link" href="/categories/博客的构建和调整/">博客的构建和调整</a></div>
+          </div>
+        </section>
+      </article>
+      <div class="post-neighbors">
+        <div class="post-neighbors-inner"><a class="post-neighbor" href="/posts/config-typ/"><div class="post-neighbor-top">下一篇</div><p class="post-neighbor-title">配置文件说明</p></a></div>
+      </div>
+      <footer>
+        <div class="post-footer">2026 ~ Present Carbon Typst Blog</div>
+      </footer>
+    </div>
+  </body>
+</html>

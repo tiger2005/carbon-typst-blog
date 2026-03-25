@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="generator" content="Typst">
+    <title>如何调整除了博客文章之外的页面</title>
+    <meta name="date" content="2026-03-18">
+    <link rel="canonical" href="https://example.com/posts/how-to-write-a-page/">
+    <meta property="og:title" content="如何调整除了博客文章之外的页面">
+    <meta property="og:type" content="article">
+    <meta name="description" content="本文主要介绍在 Carbon Typst Blog 中调整除了博客文章之外的页面（例如分类页、标签页、归档页等）的步骤和注意事项。">
+    <meta property="og:description" content="本文主要介绍在 Carbon Typst Blog 中调整除了博客文章之外的页面（例如分类页、标签页、归档页等）的步骤和注意事项。">
+    <meta property="og:url" content="https://example.com/posts/how-to-write-a-page/">
+    <meta name="author" content="Carbon Typst Blog">
+    <meta property="article:author" content="Carbon Typst Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="language" content="zh">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <script type="text/javascript">
+      (function(){var key='typ-blog-theme';var theme=null;try{var stored=localStorage.getItem(key);if(stored==='gray-10'||stored==='gray-90'||stored==='gray-100'||stored==='white'){theme=stored;}}catch(_){ }if(!theme){theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'gray-90':'gray-10';}document.documentElement.setAttribute('data-theme',theme);var bg=theme==='gray-90'?'#262626':theme==='gray-100'?'#161616':theme==='white'?'#ffffff':'#f4f4f4';document.documentElement.style.backgroundColor=bg;})();
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ibm/plex-sans@1.1.0/css/ibm-plex-sans-all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ibm/plex-mono@1.1.0/css/ibm-plex-mono-all.min.css">
+    <link rel="stylesheet" href="/assets/core/colors.css">
+    <link rel="stylesheet" href="/assets/core/main.css">
+    <link rel="stylesheet" href="/assets/custom.css">
+    <script type="module" src="/assets/core/render-code.js"></script>
+    <script type="module" src="/assets/core/theme.js"></script>
+    <script type="module" src="/assets/core/post-nav-switch.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <div class="site-header">
+          <div class="nav-shell">
+            <nav>
+              <button class="nav-menu-switch" type="button" aria-label="打开导航"></button>
+              <div class="nav-title">Carbon Typst Blog</div>
+              <div class="nav-body has-post-title">
+                <div class="nav-body-upper">
+                  <div class="nav-body-upper-title">Carbon Typst Blog</div>
+                  <div class="nav-body-upper-links"><a href="/">首页</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archive/">归档</a><a href="/about/">关于</a></div>
+                </div>
+                <div class="nav-body-lower">如何调整除了博客文章之外的页面</div>
+              </div>
+              <button class="nav-theme-switch" type="button" aria-label="切换主题"></button>
+            </nav>
+            <div class="nav-sidebar-backdrop"></div>
+            <aside class="nav-sidebar"><a class="nav-sidebar-item" href="/">首页</a><a class="nav-sidebar-item" href="/categories/">分类</a><a class="nav-sidebar-item" href="/tags/">标签</a><a class="nav-sidebar-item" href="/archive/">归档</a><a class="nav-sidebar-item" href="/about/">关于</a></aside>
+          </div>
+        </div>
+      </header>
+      <div class="post-header">
+        <div class="post-header-inner">
+          <h1>如何调整除了博客文章之外的页面</h1>
+        </div>
+      </div>
+      <article>
+        <section>
+          <p>在 Carbon Typst Blog 中，除了博客文章页面之外，还有一些其他类型的页面，例如分类页、标签页、归档页等。这些页面的模板和样式与博客文章页面是分开的，因此你可以通过调整这些页面的模板来定制它们的外观和功能。这些页面对应的 <code class="language-text">index.typ</code> 文件可以参考 <a href="/posts/introduction/">介绍</a>。</p>
+          <p>和博客文章不同，这些页面在构建时需要接受命令行参数的控制，从而让构建脚本可以正确渲染这些界面。Carbon Typst Blog 提供了一套查询输入的工具函数，帮助你从命令行参数中获取相关信息，例如当前页面的标签、分类、页码等。这些工具函数定义在 <code class="language-text">lib/typ2html/sys-input.typ</code> 文件中，你可以在这些函数的基础上进行调整和扩展，以满足你的需求。</p>
+          <p>以下是所有可用的查询输入工具函数：</p>
+          <h3>基础函数</h3>
+          <ul>
+            <li><code class="language-text">query-input(key, default: none)</code> : 获取指定键的命令行参数值，如果没有提供则返回默认值。</li>
+            <li>
+              <p><code class="language-text">query-posts()</code> : 获取博客文章数据的 JSON 对象，其中包含了所有博客文章的相关信息，<strong>按照时间升序排序</strong>，格式如下：</p>
+              <pre><code class="language-json">[
+  {
+    "slug": "introduction",
+    "url": "/posts/introduction/",
+    "title": "Carbon Typst Blog 介绍",
+    "description": "本文主要介绍 Carbon Typst Blog 的基本功能和配置方式。",
+    "tags": ["博客搭建"],
+    "category": "",
+    "date": "2026-03-17"
+  },
+]</code></pre>
+            </li>
+            <li>
+              <p><code class="language-text">query-slugs()</code> : 获取标签和分类的 slug 数据的 JSON 对象，其中包含了标签和分类名称与 slug 的映射关系，格式如下：</p>
+              <pre><code class="language-json">{
+  "tags": {
+    "博客搭建": "博客搭建",
+    "配置指南": "配置指南",
+    "写作指南": "写作指南",
+    "Typst": "typst"
+  }, "categories": {
+    "测试": "测试"
+  }
+}</code></pre>
+            </li>
+          </ul>
+          <h3>标签和分类相关函数</h3>
+          <ul>
+            <li><code class="language-text">query-route-tag(default: "")</code> : 获取当前页面的标签 slug，在标签页中使用。</li>
+            <li><code class="language-text">query-route-category(default: "")</code> : 获取当前页面的分类 slug，在分类页中使用。</li>
+            <li><code class="language-text">query-tag-slug-of(value)</code> : 获取指定标签的 slug。</li>
+            <li><code class="language-text">query-category-slug-of(value)</code> : 获取指定分类的 slug。</li>
+          </ul>
+          <h3>分页相关函数</h3>
+          <ul>
+            <li><code class="language-text">query-route-page(default: 1)</code> : 获取当前页面的页码，默认为 1。</li>
+            <li><code class="language-text">query-route-page-size(default: 10)</code> : 获取当前页面的每页显示数量，默认为 10。</li>
+            <li><code class="language-text">query-page-bounds(total, page: 1, page-size: 10)</code> : 根据总条目数、当前页码和每页显示数量计算分页信息，返回一个包含当前页码、每页显示数量、总页数、起始索引和结束索引的对象。</li>
+          </ul>
+          <p>使用上述函数，你就可以在分类页、标签页等页面中获取到当前页面的标签或分类信息，以及分页信息，从而根据这些信息来渲染页面内容。以下是标签页 <code class="language-text">pages/tags/[tag]/index.typ</code> 的示例代码：</p>
+          <pre><code class="language-typ">#import "../../../config.typ": *
+// 获取博客文章数据和当前页面的标签信息 
+#let posts = query-posts()
+#let current = query-route-tag()
+#let route-page = query-route-page()
+#let route-page-size = query-route-page-size(default: 10)
+
+// 设置页面标题和描述
+#show: template-page.with(
+  title: if current == "" { "标签详情" } else { "标签：" + current },
+  description: "标签详情页面",
+)
+
+// 渲染页面的面包屑导航
+#render-page-breadcrumb(
+  items: (("/", "首页"), ("/tags/", "标签")),
+)
+
+// 展示当前标签
+= #current
+
+// 根据当前标签过滤博客文章
+#let matched = posts.filter(post => post.tags.any(tag => tag == current))
+
+// 根据过滤后的文章数量和分页信息计算分页边界
+#let bounds = query-page-bounds(matched.len(), page: route-page, page-size: route-page-size)
+#let current-page = int(bounds.at("page", default: 1))
+#let total-pages = int(bounds.at("total-pages", default: 1))
+#let start-index = int(bounds.at("start-index", default: 0))
+#let end-index = int(bounds.at("end-index", default: -1))
+
+// 渲染文章列表
+#if matched.len() == 0 {
+  html.div(class: "error-block", {
+    "暂无文章"
+  })
+} else {
+  html.div(class: "posts-grid", {
+    for i in range(end-index, start-index - 1, step: -1) {
+      let post = matched.at(i)
+      let date-parts = post.date.split("-")
+      let post-date-text = if date-parts.len() == 3 {
+        format-post-date(datetime(
+          year: int(date-parts.at(0)),
+          month: int(date-parts.at(1)),
+          day: int(date-parts.at(2)),
+        ))
+      } else {
+        post.date
+      }
+      html.elem("div", attrs: (
+        class: "post-card",
+        "data-post-url": post.url,
+      ), {
+        html.div(class: "post-title", {
+          html.a(class: "post-card-link", href: post.url, post.title)
+        })
+        html.div(class: "post-description", {
+          post.description
+        })
+        if post.tags.len() != 0 {
+          html.div(class: "post-card-tags", {
+            for tag in post.tags {
+              render-tag-link(tag, href: "/tags/" + query-tag-slug-of(tag) + "/")
+            }
+          })
+        }
+        html.div(class: "post-date", {
+          post-date-text
+        })
+      })
+    }
+  })
+
+  render-pagination-nav(
+    "/tags/" + query-tag-slug-of(current) + "/",
+    current-page,
+    total-pages,
+    aria-label: "标签分页",
+  )
+}</code></pre>
+          <p>如果你需要深度修改这些页面的结构和样式，可以直接编辑对应的 <code class="language-text">index.typ</code> 文件，并使用上述查询输入工具函数来获取必要的数据和信息。通过这种方式，你可以灵活地定制分类页、标签页等页面的内容和布局，以满足你的需求。</p>
+          <div class="post-meta">
+            <div class="post-tag"><span class="post-tag-desc">标签</span><span class="post-tag-group"><a class="post-tag-item tag-item-with-icon" href="/tags/typst/" style="--tag-background:var(--tag-background-teal);--tag-color:var(--tag-color-teal);--tag-background-hover:var(--tag-hover-teal);--tag-border:var(--tag-border-teal);--tag-border-hover:var(--tag-border-teal);"><span class="tag-icon" style="mask-image:url(&quot;/assets/icons/pen.svg&quot;);"></span><span class="tag-content"><span>Typst</span></span></a><a class="post-tag-item tag-item-with-icon" href="/tags/配置指南/" style="--tag-background:var(--tag-background-green);--tag-color:var(--tag-color-green);--tag-background-hover:var(--tag-hover-green);--tag-border:var(--tag-border-green);--tag-border-hover:var(--tag-border-green);"><span class="tag-icon" style="mask-image:url(&quot;/assets/icons/settings.svg&quot;);"></span><span class="tag-content"><span>配置指南</span></span></a></span></div>
+            <div class="post-time"><span class="post-time-desc">日期</span><span>2026 年 3 月 18 日</span></div>
+            <div class="post-category"><span class="post-category-desc">分类</span><a class="post-category-link" href="/categories/博客的构建和调整/">博客的构建和调整</a></div>
+          </div>
+        </section>
+      </article>
+      <div class="post-neighbors">
+        <div class="post-neighbors-inner"><a class="post-neighbor" href="/posts/config-typ/"><div class="post-neighbor-top">上一篇</div><p class="post-neighbor-title">配置文件说明</p></a><a class="post-neighbor" href="/posts/how-to-write-a-post/"><div class="post-neighbor-top">下一篇</div><p class="post-neighbor-title">如何编写一篇博客文章</p></a></div>
+      </div>
+      <footer>
+        <div class="post-footer">2026 ~ Present Carbon Typst Blog</div>
+      </footer>
+    </div>
+  </body>
+</html>

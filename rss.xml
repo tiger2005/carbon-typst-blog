@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Carbon Typst Blog</title>
+  <link>https://example.com/</link>
+  <description>Carbon Typst Blog RSS Feed</description>
+  <language>zh-cn</language>
+  <lastBuildDate>Wed, 18 Mar 2026 00:00:00 GMT</lastBuildDate>
+  <item>
+    <title>配置文件说明</title>
+    <link>https://example.com/posts/config-typ/</link>
+    <guid isPermaLink="true">https://example.com/posts/config-typ/</guid>
+    <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
+    <description>本文主要介绍在 Carbon Typst Blog 中配置文件的作用和使用方法，以及如何通过配置文件来定制博客的外观和功能。</description>
+    <category domain="category">博客的构建和调整</category>
+    <category domain="tag">配置指南</category>
+  </item>
+  <item>
+    <title>如何调整除了博客文章之外的页面</title>
+    <link>https://example.com/posts/how-to-write-a-page/</link>
+    <guid isPermaLink="true">https://example.com/posts/how-to-write-a-page/</guid>
+    <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
+    <description>本文主要介绍在 Carbon Typst Blog 中调整除了博客文章之外的页面（例如分类页、标签页、归档页等）的步骤和注意事项。</description>
+    <category domain="category">博客的构建和调整</category>
+    <category domain="tag">Typst</category>
+    <category domain="tag">配置指南</category>
+  </item>
+  <item>
+    <title>如何编写一篇博客文章</title>
+    <link>https://example.com/posts/how-to-write-a-post/</link>
+    <guid isPermaLink="true">https://example.com/posts/how-to-write-a-post/</guid>
+    <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
+    <description>本文主要介绍在 Carbon Typst Blog 中添加和编写博客文章的步骤和注意事项。</description>
+    <category domain="category">如何编写博客文章</category>
+    <category domain="tag">Typst</category>
+    <category domain="tag">写作指南</category>
+  </item>
+  <item>
+    <title>Typst 功能展示</title>
+    <link>https://example.com/posts/typst-example/</link>
+    <guid isPermaLink="true">https://example.com/posts/typst-example/</guid>
+    <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
+    <description>本文主要展示了一些常用的 Typst 语法，并给出一些增强功能。</description>
+    <category domain="category">如何编写博客文章</category>
+    <category domain="tag">Typst</category>
+    <category domain="tag">写作指南</category>
+  </item>
+  <item>
+    <title>Carbon Typst Blog 介绍</title>
+    <link>https://example.com/posts/introduction/</link>
+    <guid isPermaLink="true">https://example.com/posts/introduction/</guid>
+    <pubDate>Tue, 17 Mar 2026 00:00:00 GMT</pubDate>
+    <description>本文主要介绍 Carbon Typst Blog 的基本功能和配置方式。</description>
+    <category domain="category">博客的构建和调整</category>
+    <category domain="tag">博客搭建</category>
+  </item>
+</channel>
+</rss>

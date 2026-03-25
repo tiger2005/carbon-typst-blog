@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="generator" content="Typst">
+    <title>配置文件说明</title>
+    <meta name="date" content="2026-03-18">
+    <link rel="canonical" href="https://example.com/posts/config-typ/">
+    <meta property="og:title" content="配置文件说明">
+    <meta property="og:type" content="article">
+    <meta name="description" content="本文主要介绍在 Carbon Typst Blog 中配置文件的作用和使用方法，以及如何通过配置文件来定制博客的外观和功能。">
+    <meta property="og:description" content="本文主要介绍在 Carbon Typst Blog 中配置文件的作用和使用方法，以及如何通过配置文件来定制博客的外观和功能。">
+    <meta property="og:url" content="https://example.com/posts/config-typ/">
+    <meta name="author" content="Carbon Typst Blog">
+    <meta property="article:author" content="Carbon Typst Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="language" content="zh">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <script type="text/javascript">
+      (function(){var key='typ-blog-theme';var theme=null;try{var stored=localStorage.getItem(key);if(stored==='gray-10'||stored==='gray-90'||stored==='gray-100'||stored==='white'){theme=stored;}}catch(_){ }if(!theme){theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'gray-90':'gray-10';}document.documentElement.setAttribute('data-theme',theme);var bg=theme==='gray-90'?'#262626':theme==='gray-100'?'#161616':theme==='white'?'#ffffff':'#f4f4f4';document.documentElement.style.backgroundColor=bg;})();
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ibm/plex-sans@1.1.0/css/ibm-plex-sans-all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ibm/plex-mono@1.1.0/css/ibm-plex-mono-all.min.css">
+    <link rel="stylesheet" href="/assets/core/colors.css">
+    <link rel="stylesheet" href="/assets/core/main.css">
+    <link rel="stylesheet" href="/assets/custom.css">
+    <script type="module" src="/assets/core/render-code.js"></script>
+    <script type="module" src="/assets/core/theme.js"></script>
+    <script type="module" src="/assets/core/post-nav-switch.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <div class="site-header">
+          <div class="nav-shell">
+            <nav>
+              <button class="nav-menu-switch" type="button" aria-label="打开导航"></button>
+              <div class="nav-title">Carbon Typst Blog</div>
+              <div class="nav-body has-post-title">
+                <div class="nav-body-upper">
+                  <div class="nav-body-upper-title">Carbon Typst Blog</div>
+                  <div class="nav-body-upper-links"><a href="/">首页</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archive/">归档</a><a href="/about/">关于</a></div>
+                </div>
+                <div class="nav-body-lower">配置文件说明</div>
+              </div>
+              <button class="nav-theme-switch" type="button" aria-label="切换主题"></button>
+            </nav>
+            <div class="nav-sidebar-backdrop"></div>
+            <aside class="nav-sidebar"><a class="nav-sidebar-item" href="/">首页</a><a class="nav-sidebar-item" href="/categories/">分类</a><a class="nav-sidebar-item" href="/tags/">标签</a><a class="nav-sidebar-item" href="/archive/">归档</a><a class="nav-sidebar-item" href="/about/">关于</a></aside>
+          </div>
+        </div>
+      </header>
+      <div class="post-header">
+        <div class="post-header-inner">
+          <h1>配置文件说明</h1>
+        </div>
+      </div>
+      <article>
+        <section>
+          <p>本文主要介绍 <code class="language-text">config.typ</code> 和 <code class="language-text">site.config.json</code> 这两个配置文件的作用和使用方法，以及如何通过它们来定制 Carbon Typst Blog 的外观和功能。</p>
+          <h2><code class="language-text">config.typ</code></h2>
+          <p><code class="language-text">config.typ</code> 是 Carbon Typst Blog 的主要配置文件，位于项目的根目录下。它是一个 Typst 文件，定义了博客的全局设置、模板和一些辅助函数。通过修改 <code class="language-text">config.typ</code>，你可以定制博客的标题、导航链接、标签样式、页脚内容等。</p>
+          <p>以下是可能的 <code class="language-text">config.typ</code> 文件内容：</p>
+          <pre><code class="language-typ">// 引入 typ2html 库，提供 HTML 导出相关的功能和模板
+#import "lib/typ2html/typ2html.typ" : *
+
+// 定义页脚内容，可以在这里添加版权信息、联系方式等
+#let footer-content = [
+  2026 \~ Present Carbon Typst Blog
+]
+
+// 定义标签的样式和图标，可以根据需要添加更多的标签选项
+#let tag-options = (
+  "博客搭建": (preset: "cyan", "icon": "/assets/icons/rocket.svg"),
+  "Typst": ("preset": "teal", "icon": "/assets/icons/pen.svg"),
+  "写作指南": ("preset": "blue", "icon": "/assets/icons/edit.svg"),
+  "配置指南": ("preset": "green", "icon": "/assets/icons/settings.svg"),
+)
+
+// 将标签选项应用到标签链接和标签卡片的渲染函数中，使其在博客中生效
+// 这一部分无需修改，除非你需要自定义标签的渲染方式
+#let render-tag-link = render-tag-link.with(tag-options: tag-options)
+#let render-tag-card = render-tag-card.with(tag-options: tag-options)
+
+// 定义博客的模板，包括站点标题、导航链接、语言、页脚内容等
+#let templates = make-templates(
+  // 站点标题，将显示在浏览器标签页和博客的头部
+  site-title: "Carbon Typst Blog",
+  // 导航链接，定义博客的主导航菜单，可以根据需要添加或修改链接
+  header-links: (
+    "/": "首页",
+    "/categories/": "分类",
+    "/tags/": "标签",
+    "/archive/": "归档",
+    "/about/": "关于",
+  ),
+  // 博客的语言设置，影响文本的排版和一些默认的文本内容
+  lang: "zh",
+  // 页脚内容，将显示在博客的底部，可以使用 HTML 或 Typst 的文本格式化功能
+  footer-content: footer-content,
+  // 标签选项，将在博客中使用定义的标签样式和图标
+  tag-options: tag-options,
+  // 自定义 CSS 文件，可以在这里添加你自己的样式来定制博客的外观
+  custom-css: (
+    "/assets/custom.css",
+  ),
+  // 自定义 JavaScript 文件，可以在这里添加你自己的脚本来增强博客的功能
+  custom-script: (
+    
+  )
+)
+
+// 从模板中提取出文章模板和页面模板，供博客文章和页面使用
+#let template-post = templates.post
+#let template-page = templates.page</code></pre>
+          <p>其中，标签支持的颜色预设为：<code class="language-text">gray</code>，<code class="language-text">cool-gray</code>，<code class="language-text">warm-gray</code>，<code class="language-text">red</code>，<code class="language-text">magenta</code>，<code class="language-text">purple</code>，<code class="language-text">blue</code>，<code class="language-text">cyan</code>，<code class="language-text">teal</code> 和 <code class="language-text">green</code>。标签的图标应该是一个 SVG 图像的 URL 地址，你可以使用博客中提供的图标，也可以使用你自己的图标。你可以在 <a href="https://carbondesignsystem.com/elements/icons/library/" target="_blank" rel="noopener noreferrer">这个图标库</a> 中下载到符合 Carbon Design System 设计规范的 SVG 图标，或者使用其他来源的图标，只要它们是 SVG 格式的即可。你可以在定义标签选项时使用这些预设颜色，或者在 <code class="language-text">lib/typ2html/tag.typ</code> 中自定义颜色信息。</p>
+          <h2><code class="language-text">site.config.json</code></h2>
+          <p><code class="language-text">site.config.json</code> 是一个可选的 JSON 配置文件，位于项目的根目录下。它主要用于存储一些需要在博客运行时访问的配置信息。目前 <code class="language-text">site.config.json</code> 中的配置项包括：</p>
+          <pre><code class="language-json">{
+  "siteTitle": "Carbon Typst Blog",
+  "siteUrl": "https://example.com",
+  "author": "Carbon Typst Blog",
+  "description": "Carbon Typst Blog RSS Feed",
+  "language": "zh-cn"
+}</code></pre>
+          <p>其中，<code class="language-text">siteTitle</code> 是博客的标题，<code class="language-text">siteUrl</code> 是博客的 URL 地址，<code class="language-text">author</code> 是博客的作者名称，<code class="language-text">description</code> 是博客的描述信息，<code class="language-text">language</code> 是博客的语言设置。你可以根据需要修改这些配置项来定制你的博客。需要注意的是，<code class="language-text">site.config.json</code> 中的配置项会在博客运行时被读取并且在生成 RSS Feed 和其他需要使用这些信息的地方生效，因此请确保这些信息的准确性和完整性。</p>
+          <div class="post-meta">
+            <div class="post-tag"><span class="post-tag-desc">标签</span><span class="post-tag-group"><a class="post-tag-item tag-item-with-icon" href="/tags/配置指南/" style="--tag-background:var(--tag-background-green);--tag-color:var(--tag-color-green);--tag-background-hover:var(--tag-hover-green);--tag-border:var(--tag-border-green);--tag-border-hover:var(--tag-border-green);"><span class="tag-icon" style="mask-image:url(&quot;/assets/icons/settings.svg&quot;);"></span><span class="tag-content"><span>配置指南</span></span></a></span></div>
+            <div class="post-time"><span class="post-time-desc">日期</span><span>2026 年 3 月 18 日</span></div>
+            <div class="post-category"><span class="post-category-desc">分类</span><a class="post-category-link" href="/categories/博客的构建和调整/">博客的构建和调整</a></div>
+          </div>
+        </section>
+      </article>
+      <div class="post-neighbors">
+        <div class="post-neighbors-inner"><a class="post-neighbor" href="/posts/introduction/"><div class="post-neighbor-top">上一篇</div><p class="post-neighbor-title">Carbon Typst Blog 介绍</p></a><a class="post-neighbor" href="/posts/how-to-write-a-page/"><div class="post-neighbor-top">下一篇</div><p class="post-neighbor-title">如何调整除了博客文章之外的页面</p></a></div>
+      </div>
+      <footer>
+        <div class="post-footer">2026 ~ Present Carbon Typst Blog</div>
+      </footer>
+    </div>
+  </body>
+</html>

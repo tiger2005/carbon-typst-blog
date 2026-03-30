@@ -837,7 +837,7 @@ article pre {
   margin: 1rem 0 0 0;
   padding: 1rem 3rem 1rem 1rem;
   position: relative;
-  background: var(--layer1);
+  background: var(--layer1) !important;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -891,13 +891,11 @@ article pre.has-line-numbers > .line-numbers-rows {
 html[data-theme="gray-90"] article :is(.shiki, .shiki span, .shiki-inline span),
 html[data-theme="gray-100"] article :is(.shiki, .shiki span, .shiki-inline span) {
   color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
 }
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) article :is(.shiki, .shiki span, .shiki-inline span) {
     color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
   }
 }
 

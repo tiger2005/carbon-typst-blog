@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <meta name="generator" content="Typst">
-    <title>配置文件说明</title>
+    <title>配置文件说明 | Carbon Typst Blog</title>
     <meta name="date" content="2026-03-18">
     <link rel="canonical" href="https://example.com/posts/config-typ/">
-    <meta property="og:title" content="配置文件说明">
+    <meta property="og:title" content="配置文件说明 | Carbon Typst Blog">
     <meta property="og:type" content="article">
     <meta name="description" content="本文主要介绍在 Carbon Typst Blog 中配置文件的作用和使用方法，以及如何通过配置文件来定制博客的外观和功能。">
     <meta property="og:description" content="本文主要介绍在 Carbon Typst Blog 中配置文件的作用和使用方法，以及如何通过配置文件来定制博客的外观和功能。">
@@ -114,8 +114,20 @@
 )
 
 // 从模板中提取出文章模板和页面模板，供博客文章和页面使用
-#let template-post = templates.post
-#let template-page = templates.page</code></pre>
+#let template-page = templates.page
+#let template-post(..args) = {
+  // 你可以在这里自定义 PDF 预览的效果
+  // 以下是一些示例设置，你可以根据需要进行调整
+  set page(height: auto, width: 30cm)
+  set text(16pt, font: ("IBM Plex Sans SC"), lang: "zh")
+  show raw: text.with(font: ("Zed Plex Mono", "IBM Plex Sans SC"))
+  show math.equation: set text(16pt)
+  set table(inset: 8pt)
+  set grid(inset: 8pt)
+
+  (templates.post)(..args)
+}
+</code></pre>
           <p>其中，标签支持的颜色预设为：<code class="language-text">gray</code>，<code class="language-text">cool-gray</code>，<code class="language-text">warm-gray</code>，<code class="language-text">red</code>，<code class="language-text">magenta</code>，<code class="language-text">purple</code>，<code class="language-text">blue</code>，<code class="language-text">cyan</code>，<code class="language-text">teal</code> 和 <code class="language-text">green</code>。标签的图标应该是一个 SVG 图像的 URL 地址，你可以使用博客中提供的图标，也可以使用你自己的图标。你可以在 <a href="https://carbondesignsystem.com/elements/icons/library/" target="_blank" rel="noopener noreferrer">这个图标库</a> 中下载到符合 Carbon Design System 设计规范的 SVG 图标，或者使用其他来源的图标，只要它们是 SVG 格式的即可。你可以在定义标签选项时使用这些预设颜色，或者在 <code class="language-text">lib/typ2html/tag.typ</code> 中自定义颜色信息。</p>
           <h2><code class="language-text">site.config.json</code></h2>
           <p><code class="language-text">site.config.json</code> 是一个可选的 JSON 配置文件，位于项目的根目录下。它主要用于存储一些需要在博客运行时访问的配置信息。目前 <code class="language-text">site.config.json</code> 中的配置项包括：</p>

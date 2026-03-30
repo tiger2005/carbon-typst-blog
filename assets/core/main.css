@@ -52,6 +52,8 @@
   --success: var(--green-50);
   --warning: var(--yellow-30);
   --info: var(--blue-70);
+  --quote: var(--gray-20);
+  --nested-quote: var(--gray-40);
 
   --notification-background-error: var(--red-10);
   --notification-background-success: var(--green-10);
@@ -190,6 +192,8 @@ html[data-theme="white"] {
   --success: var(--green-50);
   --warning: var(--yellow-30);
   --info: var(--blue-70);
+  --quote: var(--gray-20);
+  --nested-quote: var(--gray-40);
 
   --notification-background-error: var(--red-10);
   --notification-background-success: var(--green-10);
@@ -265,6 +269,8 @@ html:not([data-theme]) {
   --success: var(--green-50);
   --warning: var(--yellow-30);
   --info: var(--blue-70);
+  --quote: var(--gray-30);
+  --nested-quote: var(--gray-40);
 
   --notification-background-error: var(--red-10);
   --notification-background-success: var(--green-10);
@@ -339,6 +345,8 @@ html:not([data-theme]) {
     --success: var(--green-40);
     --warning: var(--yellow-30);
     --info: var(--blue-50);
+    --quote: var(--gray-60);
+    --nested-quote: var(--gray-50);
 
     --notification-background-error: var(--gray-80);
     --notification-background-success: var(--gray-80);
@@ -463,6 +471,8 @@ html[data-theme="gray-90"] {
   --success: var(--green-40);
   --warning: var(--yellow-30);
   --info: var(--blue-50);
+  --quote: var(--gray-60);
+  --nested-quote: var(--gray-50);
 
   --notification-background-error: var(--gray-80);
   --notification-background-success: var(--gray-80);
@@ -586,6 +596,8 @@ html[data-theme="gray-100"] {
   --success: var(--green-40);
   --warning: var(--yellow-30);
   --info: var(--blue-50);
+  --quote: var(--gray-70);
+  --nested-quote: var(--gray-60);
 
   --notification-background-error: var(--gray-90);
   --notification-background-success: var(--gray-90);
@@ -979,6 +991,10 @@ article .typst-frame {
   filter: var(--math-filter) !important;
 }
 
+article .disable-filter > svg {
+  filter: none !important;
+}
+
 article figure[role="math"] {
   display: block;
   width: 100%;
@@ -1002,6 +1018,11 @@ article span[role="math"] {
   vertical-align: baseline;
   text-indent: 0;
   font-size: 1.2em;
+  line-height: 1.25;
+}
+
+.html-auto-figure > svg {
+  zoom: 1.2;
 }
 
 /* LIST */
@@ -1041,6 +1062,10 @@ article ol li p {
   margin: 0.5rem 0;
 }
 
+[role="doc-bibliography"] > ul > li {
+  margin-left: 0.5rem;
+}
+
 /* FIGURE */
 
 article figure {
@@ -1060,6 +1085,7 @@ article figure figcaption {
   margin-top: 1rem;
   font-size: 0.875em;
   color: var(--text-primary);
+  text-align: center;
 }
 
 article figure img {
@@ -1067,6 +1093,15 @@ article figure img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.auto-frame {
+  width: 100%;
+  height: auto;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  padding: .1rem;
 }
 
 /* TABLE */
@@ -1121,6 +1156,20 @@ article tbody tr:hover {
 
 article tbody tr:hover td {
   color: var(--text-primary);
+}
+
+/* GRID */
+
+.html-auto-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem auto 0 auto;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.html-auto-grid-cell {
+  justify-self: center;
 }
 
 /* HR */
@@ -1184,7 +1233,7 @@ article section[role="doc-endnotes"] a:visited.footnote-ref-link::before {
 article .quote-block {
   margin: 1rem 0 0 0;
   padding: 1rem;
-  border-left: 3px solid var(--border-subtle0);
+  border-left: 3px solid var(--quote);
 }
 
 article .quote-block > *:first-child {
@@ -1287,6 +1336,13 @@ article .success-block > *:last-child,
 article .warning-block > *:last-child,
 article .error-block > *:last-child {
   margin-bottom: 0 !important;
+}
+
+article .note-block .quote-block,
+article .success-block .quote-block,
+article .warning-block .quote-block,
+article .error-block .quote-block {
+  border-left: 3px solid var(--nested-quote);
 }
 
 /* FOOTER */
@@ -1888,7 +1944,7 @@ header.nav-menu-open .nav-sidebar {
 
 /* ACCESSIBILITY */
 
-:focus-visible {
+:focus-visible, article section[role="doc-endnotes"]  a.footnote-ref-link:focus {
   outline: 3px solid var(--focus) !important;
   outline-offset: -3px;
 }

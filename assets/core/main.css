@@ -1942,12 +1942,12 @@ header.nav-menu-open .nav-sidebar {
 
 /* ACCESSIBILITY */
 
-:focus-visible, article section[role="doc-endnotes"]  a.footnote-ref-link:focus {
+:focus-visible, a.footnote-ref-link:focus {
   outline: 3px solid var(--focus) !important;
   outline-offset: -3px;
 }
 
-article :focus-visible {
+article :focus-visible, a.footnote-ref-link:focus {
   outline-offset: 0px;
 }
 

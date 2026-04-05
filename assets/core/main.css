@@ -1097,9 +1097,12 @@ article figure img {
   width: 100%;
   height: auto;
   overflow-x: auto;
-  display: flex;
-  justify-content: center;
   padding: .1rem;
+}
+
+.auto-frame > div {
+  width: max-content;
+  margin: 0 auto;
 }
 
 /* TABLE */

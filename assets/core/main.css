@@ -54,6 +54,9 @@
   --info: var(--blue-70);
   --quote: var(--gray-20);
   --nested-quote: var(--gray-40);
+  --nested-code: var(--white);
+  --nested-code-hover: var(--white-hover);
+  --nested-code-active: var(--gray-20);
 
   --notification-background-error: var(--red-10);
   --notification-background-success: var(--green-10);
@@ -194,6 +197,9 @@ html[data-theme="white"] {
   --info: var(--blue-70);
   --quote: var(--gray-20);
   --nested-quote: var(--gray-40);
+  --nested-code: var(--white);
+  --nested-code-hover: var(--white-hover);
+  --nested-code-active: var(--gray-20);
 
   --notification-background-error: var(--red-10);
   --notification-background-success: var(--green-10);
@@ -271,6 +277,9 @@ html:not([data-theme]) {
   --info: var(--blue-70);
   --quote: var(--gray-30);
   --nested-quote: var(--gray-40);
+  --nested-code: var(--white);
+  --nested-code-hover: var(--white-hover);
+  --nested-code-active: var(--gray-20);
 
   --notification-background-error: var(--red-10);
   --notification-background-success: var(--green-10);
@@ -347,6 +356,9 @@ html:not([data-theme]) {
     --info: var(--blue-50);
     --quote: var(--gray-60);
     --nested-quote: var(--gray-50);
+    --nested-code: var(--layer2);
+    --nested-code-hover: var(--layer2-hover);
+    --nested-code-active: var(--layer2-accent-active);
 
     --notification-background-error: var(--gray-80);
     --notification-background-success: var(--gray-80);
@@ -473,6 +485,9 @@ html[data-theme="gray-90"] {
   --info: var(--blue-50);
   --quote: var(--gray-60);
   --nested-quote: var(--gray-50);
+  --nested-code: var(--layer2);
+  --nested-code-hover: var(--layer2-hover);
+  --nested-code-active: var(--layer2-accent-active);
 
   --notification-background-error: var(--gray-80);
   --notification-background-success: var(--gray-80);
@@ -598,6 +613,9 @@ html[data-theme="gray-100"] {
   --info: var(--blue-50);
   --quote: var(--gray-70);
   --nested-quote: var(--gray-60);
+  --nested-code: var(--layer2);
+  --nested-code-hover: var(--layer2-hover);
+  --nested-code-active: var(--layer2-accent-active);
 
   --notification-background-error: var(--gray-90);
   --notification-background-success: var(--gray-90);
@@ -979,6 +997,18 @@ article pre > .copy-button:hover {
 
 article pre > .copy-button:active {
   background-color: var(--layer1-accent-active);
+}
+
+article :is(.note-block, .success-block, .warning-block, .error-block) :is(pre, code, .copy-button) {
+  background-color: var(--nested-code) !important;
+}
+
+article :is(.note-block, .success-block, .warning-block, .error-block) .copy-button:hover {
+  background-color: var(--nested-code-hover) !important;
+}
+
+article :is(.note-block, .success-block, .warning-block, .error-block) .copy-button:active {
+  background-color: var(--nested-code-active) !important;
 }
 
 /* MATH */
@@ -1396,6 +1426,7 @@ footer {
 }
 
 .post-footer {
+  width: 100%;
   max-width: 60rem;
 }
 
@@ -1950,7 +1981,7 @@ header.nav-menu-open .nav-sidebar {
   outline-offset: -3px;
 }
 
-article :focus-visible, a.footnote-ref-link:focus {
+article :focus-visible, a.footnote-ref-link:focus, footer a:focus-visible {
   outline-offset: 0px;
 }
 

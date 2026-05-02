@@ -1019,7 +1019,7 @@ article .typst-frame {
   filter: var(--math-filter) !important;
 }
 
-article .disable-filter > svg {
+article .disable-filter svg {
   filter: none !important;
 }
 
